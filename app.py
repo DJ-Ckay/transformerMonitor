@@ -34,7 +34,7 @@ if uploaded_file is not None:
         monthly_avg = last_year.resample('M').mean()
         
         # Extract oil temperature, ambient temperature, and load for the last year
-        oil_temp = monthly_avg[oilTemp]
+        oil_temp = monthly_avg['Oil Temperature Avg']
         ambient_temp = monthly_avg['Ambient Temperature']
         load = monthly_avg['Load (kVA)']
         months = oil_temp.index.strftime("%b")
