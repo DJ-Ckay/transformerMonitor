@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Set the page title and layout
 st.set_page_config(page_title="Transformer Dashboard", layout="wide")
@@ -64,6 +65,15 @@ if uploaded_file is not None:
             plt.xticks(rotation=45)
             st.pyplot(fig)
         
+        carbonCo = monthly_avg['Carbon Monoxide (ppm)']
+        hydrogen = monthly_avg['Hydrogen (ppm)']
+        fig, ax = plt.subplots(figsize=(4, 2))
+        ax.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
+        ax.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
+        ax.set_ylabel('GAS CONTENTS')
+        ax.legend()
+        plt.xticks(rotation=45)
+        st.pyplot(fig)
 
     elif dateRange == 'LAST 6MONTH':
         # Get data for the last 6 months
@@ -101,6 +111,16 @@ if uploaded_file is not None:
             ax.set_yticks(np.arange(0, max(load) + 50, 50))
             plt.xticks(rotation=45)
             st.pyplot(fig)
+        carbonCo = monthly_avg['Carbon Monoxide (ppm)']
+        hydrogen = monthly_avg['Hydrogen (ppm)']
+        fig, ax = plt.subplots(figsize=(4, 2))
+        ax.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
+        ax.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
+        ax.set_ylabel('GAS CONTENTS')
+        ax.legend()
+        plt.xticks(rotation=45)
+        st.pyplot(fig)
+
 
     elif dateRange == 'LAST 3MONTH':
         # Get data for the last 3 months
@@ -138,6 +158,15 @@ if uploaded_file is not None:
             ax.set_yticks(np.arange(0, max(load) + 50, 50))
             plt.xticks(rotation=45)
             st.pyplot(fig)
+        carbonCo = monthly_avg['Carbon Monoxide (ppm)']
+        hydrogen = monthly_avg['Hydrogen (ppm)']
+        fig, ax = plt.subplots(figsize=(4, 2))
+        ax.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
+        ax.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
+        ax.set_ylabel('GAS CONTENTS')
+        ax.legend()
+        plt.xticks(rotation=45)
+        st.pyplot(fig)
 
     elif dateRange == 'LAST 1MONTH':
         last_month = df.last("1M")
@@ -175,6 +204,16 @@ if uploaded_file is not None:
             ax.set_yticks(np.arange(0, max(load) + 50, 50))
             plt.xticks(rotation=45)
             st.pyplot(fig)
+        carbonCo = daily_avg['Carbon Monoxide (ppm)']
+        hydrogen = daily_avg['Hydrogen (ppm)']
+        fig, ax = plt.subplots(figsize=(4, 2))
+        ax.plot(weeks, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
+        ax.plot(weeks, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
+        ax.set_ylabel('GAS CONTENTS')
+        ax.legend()
+        plt.xticks(rotation=45)
+        st.pyplot(fig)
+
     elif dateRange == 'LAST 1WEEK':
         last_week = df.last("7D")
 
@@ -208,6 +247,16 @@ if uploaded_file is not None:
             ax.set_yticks(np.arange(0, max(load) + 50, 50))
             plt.xticks(rotation=45)
             st.pyplot(fig)
+        
+        carbonCo = daily_avg['Carbon Monoxide (ppm)']
+        hydrogen = daily_avg['Hydrogen (ppm)']
+        fig, ax = plt.subplots(figsize=(4, 2))
+        ax.plot(days, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
+        ax.plot(days, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
+        ax.set_ylabel('GAS CONTENTS')
+        ax.legend()
+        plt.xticks(rotation=45)
+        st.pyplot(fig)
 
     elif dateRange == 'LAST 1DAY':
         # Get data for the last 1 day
@@ -240,6 +289,15 @@ if uploaded_file is not None:
             ax.set_yticks(np.arange(0, max(load) + 50, 50))
             plt.xticks(rotation=45)
             st.pyplot(fig)
+        carbonCo = hourly_avg['Carbon Monoxide (ppm)']
+        hydrogen = hourly_avg['Hydrogen (ppm)']
+        fig, ax = plt.subplots(figsize=(4, 2))
+        ax.plot(hours, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
+        ax.plot(hours, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
+        ax.set_ylabel('GAS CONTENTS')
+        ax.legend()
+        plt.xticks(rotation=45)
+        st.pyplot(fig)
 
     # Middle Section: Result Summary, Prediction Analysis, Correlation Tool
     st.markdown("""
@@ -345,16 +403,19 @@ if uploaded_file is not None:
 
     # Correlation Tool in col3
     with col3:
-        corr_data = np.random.rand(4, 4)
+        cols = ['Ambient Temperature', 'Load (kVA)', oilTemp, 'Hydrogen (ppm)', 'Carbon Monoxide (ppm)']
+        corr_data = df[cols].corr()
         fig, ax = plt.subplots()
-        cax = ax.matshow(corr_data, cmap="Purples")
-        fig.colorbar(cax)
-        ax.set_xticks(np.arange(4))
-        ax.set_yticks(np.arange(4))
-        ax.set_xticklabels(['Oil', 'Temp', 'Load', 'Moist'])
-        ax.set_yticklabels(['Moist', 'Load', 'Temp', 'Oil'])
-        plt.savefig('corrFigure.png')
-        st.markdown("<h3 class = 'corrPlot'>CORRELATION PLOT</h3>", unsafe_allow_html=True)
+        # cax = ax.matshow(corr_data, cmap="Purples")
+        # fig.colorbar(cax)
+        sns.heatmap(corr_data, annot = True)
+        # ax.set_xticks(np.arange(4))
+        # ax.set_yticks(np.arange(4))
+        # ax.set_xticklabels(cols)
+        # ax.set_yticklabels(cols)
+        plt.title('CORRELATION PLOT')
+        # plt.savefig('corrFigure.png')
+        # st.markdown("<h3 class = 'corrPlot'>CORRELATION PLOT</h3>", unsafe_allow_html=True)
         st.pyplot(fig)
 
 if uploaded_file is None or not st.session_state:
