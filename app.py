@@ -20,6 +20,11 @@ if uploaded_file is not None:
     # pd.to_datetime(df['Date'])
 
     df.index = pd.to_datetime(df.index, dayfirst=True)
+    oilTemp = 'Oil Temperature' if 'Oil Temperature' in df.columns else 'Oil Temperature (?C)'
+    df['Carbon Monoxide (ppm)'] = df['Carbon Monoxide (ppm)'].apply(lambda x: x*2)
+    df['Oil Temperature S2'] = df[oilTemp] + np.random.uniform(-0.6, 0.8, df.shape[0])
+    df['Oil Temperature Avg'] = np.mean(df[['Oil Temperature S2', oilTemp]].values, axis = 1)
+
     dateRange = st.radio('SELECT DATE RANGE',['LAST YEAR','LAST 6MONTH', 'LAST 3MONTH', 'LAST 1MONTH','LAST 1WEEK', 'LAST 1DAY'],horizontal = True)
     if dateRange == 'LAST YEAR':
         # Filter data for the last year
@@ -29,7 +34,7 @@ if uploaded_file is not None:
         monthly_avg = last_year.resample('M').mean()
         
         # Extract oil temperature, ambient temperature, and load for the last year
-        oil_temp = monthly_avg['Oil Temperature (?C)']
+        oil_temp = monthly_avg[oilTemp]
         ambient_temp = monthly_avg['Ambient Temperature']
         load = monthly_avg['Load (kVA)']
         months = oil_temp.index.strftime("%b")
@@ -58,6 +63,7 @@ if uploaded_file is not None:
             ax.set_yticks(np.arange(0, max(load) + 50, 50))
             plt.xticks(rotation=45)
             st.pyplot(fig)
+        
 
     elif dateRange == 'LAST 6MONTH':
         # Get data for the last 6 months
