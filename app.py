@@ -406,16 +406,8 @@ if uploaded_file is not None:
         cols = ['Ambient Temperature', 'Load (kVA)', oilTemp, 'Hydrogen (ppm)', 'Carbon Monoxide (ppm)']
         corr_data = df[cols].corr()
         fig, ax = plt.subplots()
-        # cax = ax.matshow(corr_data, cmap="Purples")
-        # fig.colorbar(cax)
-        sns.heatmap(corr_data, annot = True)
-        # ax.set_xticks(np.arange(4))
-        # ax.set_yticks(np.arange(4))
-        # ax.set_xticklabels(cols)
-        # ax.set_yticklabels(cols)
+        sns.heatmap(corr_data, annot = True, cmap = 'coolwarm')
         plt.title('CORRELATION PLOT')
-        # plt.savefig('corrFigure.png')
-        # st.markdown("<h3 class = 'corrPlot'>CORRELATION PLOT</h3>", unsafe_allow_html=True)
         st.pyplot(fig)
 
 if uploaded_file is None or not st.session_state:
