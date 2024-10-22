@@ -388,7 +388,7 @@ if uploaded_file is not None:
         st.markdown("""<div class='custom-box'>
                     <h3> Result Summary </h3>
                     <ul>
-                    <li><b> Transformer's Age</b>: {:.2f}</li>
+                    <li><b> Transformer's Age</b>: {:.2f} Years</li>
                     <li><b> Period of Data Measurement</b>: 15 days</li>
                     <li><b> Average Ambient Temperature</b>: {:.2f}°C</li>
                     <li><b> Average Oil Temperature</b>: {:.2f}°C</li>
