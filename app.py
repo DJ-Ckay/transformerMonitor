@@ -20,11 +20,19 @@ year = int(age)
 month = int((age-year)*12)
 uploaded_file = st.file_uploader("Choose a file", type=["csv", "txt"])
 
+def calculateHealthindex(current_value, min_value, max_value, thresh = 0.1):
+    if current_value < min_value: current_value = min_value; hid = thresh
+    elif current_value > max_value: current_value = max_value; hid = 1
+    else: hid = max((current_value - min_value) / (max_value - min_value), thresh)
+    return hid
+def healthStatus(val):
+    if val<=0.3:return '<span style="color: green;">Normal.</span>'
+    elif val<=0.6:return '<span style="color: yellow;">Watch.</span>'
+    else:return '<span style="color: red;">Danger.</span>'
 if uploaded_file is not None:
     # Load dataset
     df = pd.read_csv(uploaded_file, index_col="DATE")
-    # pd.to_datetime(df['Date'])
-
+    # pd.to_datetime(df['Date'])    
     df.index = pd.to_datetime(df.index, dayfirst=True)
     first_date = df.index.min()
     last_date = df.index.max()
@@ -36,6 +44,17 @@ if uploaded_file is not None:
     df['Oil Temperature S2'] = df[oilTemp] + np.random.uniform(-0.6, 0.8, df.shape[0])
     df['Oil Temperature Avg'] = np.mean(df[['Oil Temperature S2', oilTemp]].values, axis = 1)
     oilTemp = 'Oil Temperature Avg'
+    
+    oilTempHID = calculateHealthindex(df[oilTemp].values[-1], 62.779347, 92.364736+15, 0.15)
+    oilTempSta = healthStatus(oilTempHID)
+    loadKVAHID = calculateHealthindex(df['Load (kVA)'].values[-1], 141.195798, 300, 0.1)
+    loadKVASta = healthStatus(loadKVAHID)
+    carbonCHID = calculateHealthindex(df['Carbon Monoxide (ppm)'].values[-1], 0.6*df['Carbon Monoxide (ppm)'].min(), 0.8*df['Carbon Monoxide (ppm)'].max(), 0.15)
+    carbonCSta = healthStatus(carbonCHID)
+    hydroCoHID = calculateHealthindex(df['Hydrogen (ppm)'].values[-1], 99.642377, 0.7*df['Hydrogen (ppm)'].max(), 0.15)
+    hydrogenSt = healthStatus(hydroCoHID)
+
+    
     dateRange = st.radio('SELECT DATE RANGE',['LAST YEAR','LAST 6MONTH', 'LAST 3MONTH', 'LAST 1MONTH','LAST 1WEEK', 'LAST 1DAY'],horizontal = True)
     if dateRange == 'LAST YEAR':
         # Filter data for the last year
@@ -439,18 +458,23 @@ if uploaded_file is not None:
             </tr>
             <tr>
                 <td>Oil Temperature</td>
-                <td>0.6</td>
-                <td>At Risk</td>
+                <td>{}</td>
+                <td>{}</td>
             </tr>
             <tr>
                 <td>Transformer Load</td>
-                <td>0.3</td>
-                <td>Watch</td>
+                <td>{}</td>
+                <td>{}</td>
             </tr>
             <tr>
-                <td>Moisture Content</td>
-                <td>0.1</td>
-                <td>Watch</td>
+                <td>Hydrogen Content</td>
+                <td>{}</td>
+                <td>{}</td>
+            </tr>
+            <tr>
+                <td>Carbon Content</td>
+                <td>{}</td>
+                <td>{}</td>
             </tr>
             <tr>
                 <td>Transformer short Circuit Probability</td>
@@ -458,7 +482,7 @@ if uploaded_file is not None:
                 <td>Watch</td>
             </tr>
         </table>
-                    </div>""", unsafe_allow_html=True)
+                    </div>""".format(oilTempHID, oilTempSta, loadKVAHID, loadKVASta, carbonCHID, carbonCSta, hydroCoHID, hydrogenSt), unsafe_allow_html=True)
 
     # Correlation Tool in col3
     with col3:
