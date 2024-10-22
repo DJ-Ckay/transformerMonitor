@@ -385,17 +385,17 @@ if uploaded_file is not None:
 
     # Result Summary in col1
     with col1:
-        st.markdown(f"""<div class='custom-box'>
+        st.markdown("""<div class='custom-box'>
                     <h3> Result Summary </h3>
                     <ul>
-                    <li><b> Transformer's Age</b>: {newAge}</li>
+                    <li><b> Transformer's Age</b>: {:.2f}</li>
                     <li><b> Period of Data Measurement</b>: 15 days</li>
                     <li><b> Average Ambient Temperature</b>: {:.2f}°C</li>
                     <li><b> Average Oil Temperature</b>: {:.2f}°C</li>
                     <li><b> Average Load</b>: {:.2f} Kva</li>
                     </ul>
                     </div>
-                    """.format(ambient_temp.mean(), oil_temp.mean(), load.mean()), unsafe_allow_html=True)
+                    """.format(newAge, ambient_temp.mean(), oil_temp.mean(), load.mean()), unsafe_allow_html=True)
 
     # Prediction Analysis in col2
     with col2:
