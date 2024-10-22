@@ -72,13 +72,15 @@ if uploaded_file is not None:
         
         carbonCo = monthly_avg['Carbon Monoxide (ppm)']
         hydrogen = monthly_avg['Hydrogen (ppm)']
-        fig = plt.figure(figsize=(4, 2))
+        fig = plt.figure()
         plt.subplot(121)
         plt.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
+        plt.title('Hydrogen Contents')
+        plt.xticks(rotation=45)
         plt.subplot(122)
         plt.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
         plt.ylabel('GAS CONTENTS')
-        plt.legend()
+        plt.title('Hydrogen Contents')
         plt.xticks(rotation=45)
         st.pyplot(fig)
 
