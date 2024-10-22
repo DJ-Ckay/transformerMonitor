@@ -3,7 +3,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+# prompt: write a code that plots an histogram in plotly
 
+import plotly.express as px
 # Set the page title and layout
 st.set_page_config(page_title="Transformer Dashboard", layout="wide")
 st.markdown("<p style='text-align: right;'>Contact Us: Kehinde Clement, Phone No: 08121111830</p>", unsafe_allow_html=True)
@@ -39,7 +41,8 @@ if uploaded_file is not None:
         ambient_temp = monthly_avg['Ambient Temperature']
         load = monthly_avg['Load (kVA)']
         months = oil_temp.index.strftime("%b")
-
+        fig = px.bar(months, oil_temp, nbins=20, title="Histogram of Oil Temperature")
+        st.plotly_chart(fig)
         # Simulate the Temperature Graph
         col1, col2 = st.columns((2, 1))
         with col1:
