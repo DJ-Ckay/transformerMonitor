@@ -16,6 +16,8 @@ st.markdown("<p style='text-align: center;'>Welcome back to Transformer Dashboar
 
 # File uploader widget
 age = st.number_input('Transformer age as at Measurement start', 0.0)
+year = int(age)
+month = int((age-year)*12)
 uploaded_file = st.file_uploader("Choose a file", type=["csv", "txt"])
 
 if uploaded_file is not None:
@@ -24,6 +26,11 @@ if uploaded_file is not None:
     # pd.to_datetime(df['Date'])
 
     df.index = pd.to_datetime(df.index, dayfirst=True)
+    first_date = df.index.min()
+    last_date = df.index.max()
+    time_difference = last_date - first_date
+    new_age = last_date + pd.DateOffset(years=year, months=month) 
+    newAge = (new_age-first_date).days/365
     oilTemp = 'Oil Temperature' if 'Oil Temperature' in df.columns else 'Oil Temperature (?C)'
     df['Carbon Monoxide (ppm)'] = df['Carbon Monoxide (ppm)'].apply(lambda x: x*2)
     df['Oil Temperature S2'] = df[oilTemp] + np.random.uniform(-0.6, 0.8, df.shape[0])
@@ -378,10 +385,10 @@ if uploaded_file is not None:
 
     # Result Summary in col1
     with col1:
-        st.markdown("""<div class='custom-box'>
+        st.markdown(f"""<div class='custom-box'>
                     <h3> Result Summary </h3>
                     <ul>
-                    <li><b> Transformer's Age</b>: 12 Years</li>
+                    <li><b> Transformer's Age</b>: {newAge}</li>
                     <li><b> Period of Data Measurement</b>: 15 days</li>
                     <li><b> Average Ambient Temperature</b>: {:.2f}°C</li>
                     <li><b> Average Oil Temperature</b>: {:.2f}°C</li>
