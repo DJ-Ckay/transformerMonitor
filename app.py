@@ -35,7 +35,7 @@ if uploaded_file is not None:
     df['Carbon Monoxide (ppm)'] = df['Carbon Monoxide (ppm)'].apply(lambda x: x*2)
     df['Oil Temperature S2'] = df[oilTemp] + np.random.uniform(-0.6, 0.8, df.shape[0])
     df['Oil Temperature Avg'] = np.mean(df[['Oil Temperature S2', oilTemp]].values, axis = 1)
-
+    oilTemp = 'Oil Temperature Avg'
     dateRange = st.radio('SELECT DATE RANGE',['LAST YEAR','LAST 6MONTH', 'LAST 3MONTH', 'LAST 1MONTH','LAST 1WEEK', 'LAST 1DAY'],horizontal = True)
     if dateRange == 'LAST YEAR':
         # Filter data for the last year
@@ -98,7 +98,7 @@ if uploaded_file is not None:
         monthly_avg = last_six_months.resample('M').mean()
 
         # Extract oil temperature, ambient temperature, and load for the last 6 months
-        oil_temp = monthly_avg['Oil Temperature (?C)']
+        oil_temp = monthly_avg[oilTemp]
         ambient_temp = monthly_avg['Ambient Temperature']
         load = monthly_avg['Load (kVA)']
 
@@ -148,7 +148,7 @@ if uploaded_file is not None:
         monthly_avg = last_three_months.resample('M').mean()
 
         # Extract oil temperature, ambient temperature, and load for the last 3 months
-        oil_temp = monthly_avg['Oil Temperature (?C)']
+        oil_temp = monthly_avg[oilTemp]
         ambient_temp = monthly_avg['Ambient Temperature']
         load = monthly_avg['Load (kVA)']
 
@@ -196,7 +196,7 @@ if uploaded_file is not None:
         daily_avg = last_month.resample('W').mean()
 
         # Extract oil temperature, ambient temperature, and load for the last month
-        oil_temp = daily_avg['Oil Temperature (?C)']
+        oil_temp = daily_avg[oilTemp]
         ambient_temp = daily_avg['Ambient Temperature']
         load = daily_avg['Load (kVA)']
 
@@ -245,7 +245,7 @@ if uploaded_file is not None:
         daily_avg = last_week.resample('D').mean()
 
         # Extract oil temperature, ambient temperature, and load for the last week
-        oil_temp = daily_avg['Oil Temperature (?C)']
+        oil_temp = daily_avg[oilTemp]
         ambient_temp = daily_avg['Ambient Temperature']
         load = daily_avg['Load (kVA)']
 
@@ -293,7 +293,7 @@ if uploaded_file is not None:
         hourly_avg = last_day.resample('2H').mean()
 
         # Extract oil temperature, ambient temperature, and load for the last day
-        oil_temp = hourly_avg['Oil Temperature (?C)']
+        oil_temp = hourly_avg[oilTemp]
         ambient_temp = hourly_avg['Ambient Temperature']
         load = hourly_avg['Load (kVA)']
 
