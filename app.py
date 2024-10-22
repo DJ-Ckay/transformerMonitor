@@ -28,7 +28,9 @@ def calculateHealthindex(current_value, min_value, max_value, thresh = 0.1):
 def healthStatus(val):
     if val<=0.3:return '<span style="color: green;">Normal.</span>'
     elif val<=0.6:return '<span style="color: yellow;">Watch.</span>'
-    else:return '<span style="color: red;">Danger.</span>'
+    else:return '<bold><span style="color: red;">Danger.</span></bold>'
+
+
 if uploaded_file is not None:
     # Load dataset
     df = pd.read_csv(uploaded_file, index_col="DATE")
