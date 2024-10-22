@@ -276,7 +276,7 @@ if uploaded_file is not None:
         plt.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
         plt.title('Hydrogen Contents')
         plt.xticks(rotation=45)
-        st.pyplot(fig))
+        st.pyplot(fig)
 
     elif dateRange == 'LAST 1DAY':
         # Get data for the last 1 day
