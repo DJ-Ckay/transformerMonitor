@@ -27,7 +27,7 @@ def calculateHealthindex(current_value, min_value, max_value, thresh = 0.1):
     return round(hid,2)
 def healthStatus(val):
     if val<=0.3:return '<span style="color: green;">Normal.</span>'
-    elif val<=0.6:return '<span style="color: yellow;">Watch.</span>'
+    elif val<=0.6:return '<span style="color: #F79421;">Watch.</span>'
     else:return '<bold><span style="color: red;">Danger.</span></bold>'
 
 
