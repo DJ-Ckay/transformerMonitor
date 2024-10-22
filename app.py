@@ -52,9 +52,9 @@ if uploaded_file is not None:
     oilTempSta = healthStatus(oilTempHID)
     loadKVAHID = calculateHealthindex(df['Load (kVA)'].values[-1], 141.195798, 300, 0.1)
     loadKVASta = healthStatus(loadKVAHID)
-    carbonCHID = calculateHealthindex(df['Carbon Monoxide (ppm)'].values[-1], 0.6*df['Carbon Monoxide (ppm)'].min(), 0.8*df['Carbon Monoxide (ppm)'].max(), 0.15)
+    carbonCHID = calculateHealthindex(df['Carbon Monoxide (ppm)'].values[-1], 0.6*df['Carbon Monoxide (ppm)'].min(), 300, 0.15)
     carbonCSta = healthStatus(carbonCHID)
-    hydroCoHID = calculateHealthindex(df['Hydrogen (ppm)'].values[-1], 99.642377, 0.7*df['Hydrogen (ppm)'].max(), 0.15)
+    hydroCoHID = calculateHealthindex(df['Hydrogen (ppm)'].values[-1], 99.642377, 250, 0.15)
     hydrogenSt = healthStatus(hydroCoHID)
 
     
