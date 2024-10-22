@@ -55,7 +55,7 @@ if uploaded_file is not None:
     df = pd.read_csv(uploaded_file, index_col="DATE")
     # pd.to_datetime(df['Date'])
     try: df.index = pd.to_datetime(df.index, dayfirst=True); df['Carbon Monoxide (ppm)'] = df['Carbon Monoxide (ppm)'].apply(lambda x: x*2)
-    except: df.index = pd.to_datetime(df.index); df['Carbon Monoxide (ppm)'] = df['Carbon Monoxide (ppm)'].apply(lambda x: x*2)
+    except: df.index = pd.to_datetime(df.index)
     first_date = df.index.min()
     last_date = df.index.max()
     time_difference = last_date - first_date
