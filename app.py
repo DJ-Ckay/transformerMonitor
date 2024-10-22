@@ -24,7 +24,7 @@ def calculateHealthindex(current_value, min_value, max_value, thresh = 0.1):
     if current_value < min_value: current_value = min_value; hid = thresh
     elif current_value > max_value: current_value = max_value; hid = 1
     else: hid = max((current_value - min_value) / (max_value - min_value), thresh)
-    return hid
+    return round(hid,2)
 def healthStatus(val):
     if val<=0.3:return '<span style="color: green;">Normal.</span>'
     elif val<=0.6:return '<span style="color: yellow;">Watch.</span>'
