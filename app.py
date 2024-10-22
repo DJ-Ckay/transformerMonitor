@@ -68,7 +68,7 @@ if uploaded_file is not None:
     oilTemp = 'Oil Temperature Avg'
     X = df[['Ambient Temperature', 'Load (kVA)', 'Hydrogen (ppm)','Carbon Monoxide (ppm)', 'Oil Temperature Avg']].values
     X = scaler.transform(X)
-    pred = np.round(model.predict(X).mean()/100,2)
+    pred = np.round(model.predict(X)[-100:].mean()/100,2)
     # pred = round(convert_range(pred, 0, 1, 0, 0.65),2)
     oilTempHID = calculateHealthindex(df[oilTemp].values[-1], 62.779347, 92.364736+15, 0.15)
     oilTempSta = healthStatus(oilTempHID)
