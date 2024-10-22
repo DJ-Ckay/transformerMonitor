@@ -79,7 +79,6 @@ if uploaded_file is not None:
         plt.xticks(rotation=45)
         plt.subplot(122)
         plt.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
-        plt.ylabel('GAS CONTENTS')
         plt.title('Hydrogen Contents')
         plt.xticks(rotation=45)
         st.pyplot(fig)
@@ -122,11 +121,14 @@ if uploaded_file is not None:
             st.pyplot(fig)
         carbonCo = monthly_avg['Carbon Monoxide (ppm)']
         hydrogen = monthly_avg['Hydrogen (ppm)']
-        fig, ax = plt.subplots(figsize=(4, 2))
-        ax.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
-        ax.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
-        ax.set_ylabel('GAS CONTENTS')
-        ax.legend()
+        fig = plt.figure()
+        plt.subplot(121)
+        plt.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
+        plt.title('Hydrogen Contents')
+        plt.xticks(rotation=45)
+        plt.subplot(122)
+        plt.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
+        plt.title('Hydrogen Contents')
         plt.xticks(rotation=45)
         st.pyplot(fig)
 
@@ -169,13 +171,16 @@ if uploaded_file is not None:
             st.pyplot(fig)
         carbonCo = monthly_avg['Carbon Monoxide (ppm)']
         hydrogen = monthly_avg['Hydrogen (ppm)']
-        fig, ax = plt.subplots(figsize=(4, 2))
-        ax.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
-        ax.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
-        ax.set_ylabel('GAS CONTENTS')
-        ax.legend()
+        fig = plt.figure()
+        plt.subplot(121)
+        plt.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
+        plt.title('Hydrogen Contents')
         plt.xticks(rotation=45)
-        st.pyplot(fig)
+        plt.subplot(122)
+        plt.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
+        plt.title('Hydrogen Contents')
+        plt.xticks(rotation=45)
+        st.pyplot(fig))
 
     elif dateRange == 'LAST 1MONTH':
         last_month = df.last("1M")
@@ -215,11 +220,14 @@ if uploaded_file is not None:
             st.pyplot(fig)
         carbonCo = daily_avg['Carbon Monoxide (ppm)']
         hydrogen = daily_avg['Hydrogen (ppm)']
-        fig, ax = plt.subplots(figsize=(4, 2))
-        ax.plot(weeks, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
-        ax.plot(weeks, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
-        ax.set_ylabel('GAS CONTENTS')
-        ax.legend()
+        fig = plt.figure()
+        plt.subplot(121)
+        plt.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
+        plt.title('Hydrogen Contents')
+        plt.xticks(rotation=45)
+        plt.subplot(122)
+        plt.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
+        plt.title('Hydrogen Contents')
         plt.xticks(rotation=45)
         st.pyplot(fig)
 
@@ -259,13 +267,16 @@ if uploaded_file is not None:
         
         carbonCo = daily_avg['Carbon Monoxide (ppm)']
         hydrogen = daily_avg['Hydrogen (ppm)']
-        fig, ax = plt.subplots(figsize=(4, 2))
-        ax.plot(days, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
-        ax.plot(days, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
-        ax.set_ylabel('GAS CONTENTS')
-        ax.legend()
+        fig = plt.figure()
+        plt.subplot(121)
+        plt.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
+        plt.title('Hydrogen Contents')
         plt.xticks(rotation=45)
-        st.pyplot(fig)
+        plt.subplot(122)
+        plt.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
+        plt.title('Hydrogen Contents')
+        plt.xticks(rotation=45)
+        st.pyplot(fig))
 
     elif dateRange == 'LAST 1DAY':
         # Get data for the last 1 day
@@ -300,11 +311,14 @@ if uploaded_file is not None:
             st.pyplot(fig)
         carbonCo = hourly_avg['Carbon Monoxide (ppm)']
         hydrogen = hourly_avg['Hydrogen (ppm)']
-        fig, ax = plt.subplots(figsize=(4, 2))
-        ax.plot(hours, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
-        ax.plot(hours, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
-        ax.set_ylabel('GAS CONTENTS')
-        ax.legend()
+        fig = plt.figure()
+        plt.subplot(121)
+        plt.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
+        plt.title('Hydrogen Contents')
+        plt.xticks(rotation=45)
+        plt.subplot(122)
+        plt.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
+        plt.title('Hydrogen Contents')
         plt.xticks(rotation=45)
         st.pyplot(fig)
 
