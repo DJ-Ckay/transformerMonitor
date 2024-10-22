@@ -389,13 +389,13 @@ if uploaded_file is not None:
                     <h3> Result Summary </h3>
                     <ul>
                     <li><b> Transformer's Age</b>: {:.2f} Years</li>
-                    <li><b> Period of Data Measurement</b>: {} </li>
+                    <li><b> Period of Data Measurement</b>: {} days</li>
                     <li><b> Average Ambient Temperature</b>: {:.2f}°C</li>
                     <li><b> Average Oil Temperature</b>: {:.2f}°C</li>
                     <li><b> Average Load</b>: {:.2f} Kva</li>
                     </ul>
                     </div>
-                    """.format(newAge, time_difference, ambient_temp.mean(), oil_temp.mean(), load.mean()), unsafe_allow_html=True)
+                    """.format(newAge, time_difference.days, ambient_temp.mean(), oil_temp.mean(), load.mean()), unsafe_allow_html=True)
 
     # Prediction Analysis in col2
     with col2:
