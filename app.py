@@ -34,8 +34,9 @@ def healthStatus(val):
 if uploaded_file is not None:
     # Load dataset
     df = pd.read_csv(uploaded_file, index_col="DATE")
-    # pd.to_datetime(df['Date'])    
-    df.index = pd.to_datetime(df.index, dayfirst=True)
+    # pd.to_datetime(df['Date'])
+    try: df.index = pd.to_datetime(df.index, dayfirst=True)
+    except: df.index = pd.to_datetime(df.index)
     first_date = df.index.min()
     last_date = df.index.max()
     time_difference = last_date - first_date
