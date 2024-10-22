@@ -59,7 +59,7 @@ if uploaded_file is not None:
     carbonCSta = healthStatus(carbonCHID)
     hydroCoHID = calculateHealthindex(df['Hydrogen (ppm)'].values[-1], 99.642377, 250, 0.15)
     hydrogenSt = healthStatus(hydroCoHID)
-    predStatus - healthStatus(pred)
+    predStatus = healthStatus(pred)
     
     dateRange = st.radio('SELECT DATE RANGE',['LAST YEAR','LAST 6MONTH', 'LAST 3MONTH', 'LAST 1MONTH','LAST 1WEEK', 'LAST 1DAY'],horizontal = True)
     if dateRange == 'LAST YEAR':
