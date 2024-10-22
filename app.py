@@ -15,6 +15,7 @@ st.markdown("<h1 style='text-align: center;'>Transformer 00001</h1>", unsafe_all
 st.markdown("<p style='text-align: center;'>Welcome back to Transformer Dashboard 🌩️</p>", unsafe_allow_html=True)
 
 # File uploader widget
+age = st.number_input('Transformer age as at Measurement start', 0.0)
 uploaded_file = st.file_uploader("Choose a file", type=["csv", "txt"])
 
 if uploaded_file is not None:
@@ -41,8 +42,8 @@ if uploaded_file is not None:
         ambient_temp = monthly_avg['Ambient Temperature']
         load = monthly_avg['Load (kVA)']
         months = oil_temp.index.strftime("%b")
-        fig = px.bar(months, oil_temp, nbins=20, title="Histogram of Oil Temperature")
-        st.plotly_chart(fig)
+        # fig = px.bar(months, oil_temp, nbins=20, title="Histogram of Oil Temperature")
+        # st.plotly_chart(fig)
         # Simulate the Temperature Graph
         col1, col2 = st.columns((2, 1))
         with col1:
@@ -55,6 +56,7 @@ if uploaded_file is not None:
             ax.plot(months, ambient_temp, label='Ambient Temperature', color='lightpink', marker='o')
             ax.set_ylabel('Temperature (°C)')
             ax.legend()
+            ax.set_yticks(np.arange(0, max(oil_temp) + 10, 5))
             plt.xticks(rotation=45)
             st.pyplot(fig)
 
@@ -70,11 +72,13 @@ if uploaded_file is not None:
         
         carbonCo = monthly_avg['Carbon Monoxide (ppm)']
         hydrogen = monthly_avg['Hydrogen (ppm)']
-        fig, ax = plt.subplots(figsize=(4, 2))
-        ax.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
-        ax.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
-        ax.set_ylabel('GAS CONTENTS')
-        ax.legend()
+        fig = plt.figure(figsize=(4, 2))
+        plt.subplot(121)
+        plt.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
+        plt.subplot(122)
+        plt.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
+        plt.set_ylabel('GAS CONTENTS')
+        plt.legend()
         plt.xticks(rotation=45)
         st.pyplot(fig)
 
