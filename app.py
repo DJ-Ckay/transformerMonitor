@@ -507,7 +507,7 @@ if uploaded_file is not None:
                 <td>{}</td>
             </tr>
         </table>
-                    </div>""".format(oilTempHID, oilTempSta, loadKVAHID, loadKVASta, carbonCHID, carbonCSta, hydroCoHID, hydrogenSt, pred, predStatus), unsafe_allow_html=True)
+                    </div>""".format(oilTempHID, oilTempSta, loadKVAHID, loadKVASta, hydroCoHID, hydrogenSt, carbonCHID, carbonCSta, pred, predStatus), unsafe_allow_html=True)
 
     # Correlation Tool in col3
     with col3:
