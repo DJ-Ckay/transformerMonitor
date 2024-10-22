@@ -48,6 +48,7 @@ def convert_range(value, min1, max1, min2, max2):
   Returns:
     The converted value.
   """
+  if value>max1: value = max1
   return ((value - min1) / (max1 - min1)) * (max2 - min2) + min2
 
 if uploaded_file is not None:
@@ -69,7 +70,7 @@ if uploaded_file is not None:
     X = df[['Ambient Temperature', 'Load (kVA)', 'Hydrogen (ppm)','Carbon Monoxide (ppm)', 'Oil Temperature Avg']].values
     X = scaler.transform(X)
     pred = np.round(model.predict(X)[-5000:].mean()/100,2)
-    pred = round(convert_range(pred, 0, 1, 0, 0.65),2)
+    pred = round(convert_range(pred, 0, 85, 0, 0.65),2)
     oilTempHID = calculateHealthindex(df[oilTemp].values[-1], 62.779347, 92.364736+15, 0.15)
     oilTempSta = healthStatus(oilTempHID)
     loadKVAHID = calculateHealthindex(df['Load (kVA)'].values[-1], 141.195798, 300, 0.1)
