@@ -32,7 +32,22 @@ def healthStatus(val):
     if val<=0.3:return '<span style="color: green;">Normal.</span>'
     elif val<=0.6:return '<span style="color: #F79421;">Watch.</span>'
     else:return '<bold><span style="color: red;">Danger.</span></bold>'
+# prompt: write a code that converts a range of min1 - max1 to min2-max2
 
+def convert_range(value, min1, max1, min2, max2):
+  """Converts a value from one range to another.
+
+  Args:
+    value: The value to convert.
+    min1: The minimum value of the original range.
+    max1: The maximum value of the original range.
+    min2: The minimum value of the new range.
+    max2: The maximum value of the new range.
+
+  Returns:
+    The converted value.
+  """
+  return ((value - min1) / (max1 - min1)) * (max2 - min2) + min2
 
 if uploaded_file is not None:
     # Load dataset
@@ -51,6 +66,7 @@ if uploaded_file is not None:
     df['Oil Temperature Avg'] = np.mean(df[['Oil Temperature S2', oilTemp]].values, axis = 1)
     oilTemp = 'Oil Temperature Avg'
     pred = np.round(model.predict(df[['Ambient Temperature', 'Load (kVA)', 'Hydrogen (ppm)','Carbon Monoxide (ppm)', 'Oil Temperature Avg']].values).mean()/100,2)
+    pred = convert_range(pred, 0, 1, 0, 0.58)
     oilTempHID = calculateHealthindex(df[oilTemp].values[-1], 62.779347, 92.364736+15, 0.15)
     oilTempSta = healthStatus(oilTempHID)
     loadKVAHID = calculateHealthindex(df['Load (kVA)'].values[-1], 141.195798, 300, 0.1)
