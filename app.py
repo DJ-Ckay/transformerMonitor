@@ -64,7 +64,7 @@ if uploaded_file is not None:
             ax.set_ylabel('Temperature (°C)')
             ax.legend()
             ax.set_yticks(np.arange(0, max(oil_temp) + 30, 10))
-            plt.xticks(fontsize=5,rotation=45)
+            plt.xticks(fontsize = 8,rotation=45)
             st.pyplot(fig)
 
         # Simulate the Load Chart
@@ -74,7 +74,7 @@ if uploaded_file is not None:
             ax.bar(months, load, color='purple')
             ax.set_ylabel('Load (Kva)')
             ax.set_yticks(np.arange(0, max(load) + 50, 50))
-            plt.xticks(fontsize=5,rotation=45)
+            plt.xticks(fontsize = 8,rotation=45)
             st.pyplot(fig)
         
         carbonCo = monthly_avg['Carbon Monoxide (ppm)']
@@ -83,11 +83,11 @@ if uploaded_file is not None:
         plt.subplot(121)
         plt.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
         plt.title('Hydrogen Contents')
-        plt.xticks(fontsize=5,rotation=45)
+        plt.xticks(fontsize = 8,rotation=45)
         plt.subplot(122)
         plt.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
         plt.title('Hydrogen Contents')
-        plt.xticks(fontsize=5,rotation=45)
+        plt.xticks(fontsize = 8,rotation=45)
         st.pyplot(fig)
 
     elif dateRange == 'LAST 6MONTH':
@@ -115,7 +115,7 @@ if uploaded_file is not None:
             ax.set_ylabel('Temperature (°C)')
             ax.legend()
             ax.set_yticks(np.arange(0, max(oil_temp) + 30, 10))
-            plt.xticks(fontsize=5,rotation=45)
+            plt.xticks(fontsize = 8,rotation=45)
             st.pyplot(fig)
 
         # Simulate the Load Chart
@@ -125,7 +125,7 @@ if uploaded_file is not None:
             ax.bar(months, load, color='purple')
             ax.set_ylabel('Load (Kva)')
             ax.set_yticks(np.arange(0, max(load) + 50, 50))
-            plt.xticks(fontsize=5,rotation=45)
+            plt.xticks(fontsize = 8,rotation=45)
             st.pyplot(fig)
         carbonCo = monthly_avg['Carbon Monoxide (ppm)']
         hydrogen = monthly_avg['Hydrogen (ppm)']
@@ -133,11 +133,11 @@ if uploaded_file is not None:
         plt.subplot(121)
         plt.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
         plt.title('Hydrogen Contents')
-        plt.xticks(fontsize=5,rotation=45)
+        plt.xticks(fontsize = 8,rotation=45)
         plt.subplot(122)
         plt.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
         plt.title('Hydrogen Contents')
-        plt.xticks(fontsize=5,rotation=45)
+        plt.xticks(fontsize = 8,rotation=45)
         st.pyplot(fig)
 
 
@@ -166,7 +166,7 @@ if uploaded_file is not None:
             ax.set_ylabel('Temperature (°C)')
             ax.set_yticks(np.arange(0, max(oil_temp) + 30, 10))
             ax.legend()
-            plt.xticks(fontsize=5,rotation=45)
+            plt.xticks(fontsize = 8,rotation=45)
             st.pyplot(fig)
 
         # Simulate the Load Chart
@@ -176,7 +176,7 @@ if uploaded_file is not None:
             ax.bar(months, load, color='purple')
             ax.set_ylabel('Load (Kva)')
             ax.set_yticks(np.arange(0, max(load) + 50, 50))
-            plt.xticks(fontsize=5,rotation=45)
+            plt.xticks(fontsize = 8,rotation=45)
             st.pyplot(fig)
         carbonCo = monthly_avg['Carbon Monoxide (ppm)']
         hydrogen = monthly_avg['Hydrogen (ppm)']
@@ -184,11 +184,11 @@ if uploaded_file is not None:
         plt.subplot(121)
         plt.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
         plt.title('Hydrogen Contents')
-        plt.xticks(fontsize=5,rotation=45)
+        plt.xticks(fontsize = 8,rotation=45)
         plt.subplot(122)
         plt.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
         plt.title('Hydrogen Contents')
-        plt.xticks(fontsize=5,rotation=45)
+        plt.xticks(fontsize = 8,rotation=45)
         st.pyplot(fig)
 
     elif dateRange == 'LAST 1MONTH':
@@ -216,7 +216,7 @@ if uploaded_file is not None:
             ax.set_ylabel('Temperature (°C)')
             ax.set_yticks(np.arange(0, max(oil_temp) + 30, 10))
             ax.legend()
-            plt.xticks(fontsize=5,rotation=45)
+            plt.xticks(fontsize = 8,rotation=45)
             st.pyplot(fig)
 
         # Simulate the Load Chart
@@ -226,7 +226,7 @@ if uploaded_file is not None:
             ax.bar(weeks, load, color='purple')
             ax.set_ylabel('Load (Kva)')
             ax.set_yticks(np.arange(0, max(load) + 50, 50))
-            plt.xticks(fontsize=5,rotation=45)
+            plt.xticks(fontsize = 8,rotation=45)
             st.pyplot(fig)
         carbonCo = daily_avg['Carbon Monoxide (ppm)']
         hydrogen = daily_avg['Hydrogen (ppm)']
@@ -234,11 +234,11 @@ if uploaded_file is not None:
         plt.subplot(121)
         plt.plot(weeks, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
         plt.title('Hydrogen Contents')
-        plt.xticks(fontsize=5,rotation=45)
+        plt.xticks(fontsize = 8,rotation=45)
         plt.subplot(122)
         plt.plot(weeks, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
         plt.title('Hydrogen Contents')
-        plt.xticks(fontsize=5,rotation=45)
+        plt.xticks(fontsize = 8,rotation=45)
         st.pyplot(fig)
 
     elif dateRange == 'LAST 1WEEK':
@@ -264,7 +264,7 @@ if uploaded_file is not None:
             ax.set_ylabel('Temperature (°C)')
             ax.set_yticks(np.arange(0, max(oil_temp) + 30, 10))
             ax.legend()
-            plt.xticks(fontsize=5,rotation=45)
+            plt.xticks(fontsize = 8,rotation=45)
             st.pyplot(fig)
         # Simulate the Load Chart
         with col2:
@@ -273,7 +273,7 @@ if uploaded_file is not None:
             ax.bar(days, load, color='purple')
             ax.set_ylabel('Load (Kva)')
             ax.set_yticks(np.arange(0, max(load) + 50, 50))
-            plt.xticks(fontsize=5,rotation=45)
+            plt.xticks(fontsize = 8,rotation=45)
             st.pyplot(fig)
         
         carbonCo = daily_avg['Carbon Monoxide (ppm)']
@@ -282,11 +282,11 @@ if uploaded_file is not None:
         plt.subplot(121)
         plt.plot(days, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
         plt.title('Hydrogen Contents')
-        plt.xticks(fontsize=5,rotation=45)
+        plt.xticks(fontsize = 8,rotation=45)
         plt.subplot(122)
         plt.plot(days, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
         plt.title('Hydrogen Contents')
-        plt.xticks(fontsize=5,rotation=45)
+        plt.xticks(fontsize = 8,rotation=45)
         st.pyplot(fig)
 
     elif dateRange == 'LAST 1DAY':
@@ -311,7 +311,7 @@ if uploaded_file is not None:
             ax.set_ylabel('Temperature (°C)')
             ax.legend()
             ax.set_yticks(np.arange(0, max(oil_temp) + 30, 10))
-            plt.xticks(fontsize=5,rotation=45)
+            plt.xticks(fontsize = 8,rotation=45)
             st.pyplot(fig)
         with col2:
             st.subheader("🔋 LOAD")
@@ -319,7 +319,7 @@ if uploaded_file is not None:
             ax.bar(hours, load, color='purple')
             ax.set_ylabel('Load (Kva)')
             ax.set_yticks(np.arange(0, max(load) + 50, 50))
-            plt.xticks(fontsize=5,rotation=45)
+            plt.xticks(fontsize = 8,rotation=45)
             st.pyplot(fig)
         carbonCo = hourly_avg['Carbon Monoxide (ppm)']
         hydrogen = hourly_avg['Hydrogen (ppm)']
@@ -327,11 +327,11 @@ if uploaded_file is not None:
         plt.subplot(121)
         plt.plot(hours, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
         plt.title('Hydrogen Contents')
-        plt.xticks(fontsize=5,rotation=45)
+        plt.xticks(fontsize = 8,rotation=45)
         plt.subplot(122)
         plt.plot(hours, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
         plt.title('Hydrogen Contents')
-        plt.xticks(fontsize=5,rotation=45)
+        plt.xticks(fontsize = 8,rotation=45)
         st.pyplot(fig)
 
     # Middle Section: Result Summary, Prediction Analysis, Correlation Tool
