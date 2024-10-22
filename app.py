@@ -56,7 +56,7 @@ if uploaded_file is not None:
             ax.plot(months, ambient_temp, label='Ambient Temperature', color='lightpink', marker='o')
             ax.set_ylabel('Temperature (°C)')
             ax.legend()
-            ax.set_yticks(np.arange(0, max(oil_temp) + 10, 5))
+            ax.set_yticks(np.arange(0, max(oil_temp) + 10, 10))
             plt.xticks(rotation=45)
             st.pyplot(fig)
 
@@ -77,7 +77,7 @@ if uploaded_file is not None:
         plt.plot(months, carbonCo, label='Carbon Contents (ppm)', color='purple', marker='o')
         plt.subplot(122)
         plt.plot(months, hydrogen, label='Hydrogen Contents (ppm)', color='lightpink', marker='o')
-        plt.set_ylabel('GAS CONTENTS')
+        plt.ylabel('GAS CONTENTS')
         plt.legend()
         plt.xticks(rotation=45)
         st.pyplot(fig)
