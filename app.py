@@ -6,6 +6,9 @@ import seaborn as sns
 # prompt: write a code that plots an histogram in plotly
 
 import plotly.express as px
+import joblib
+
+model = joblib.load('rndReg.joblib')
 # Set the page title and layout
 st.set_page_config(page_title="Transformer Dashboard", layout="wide")
 st.markdown("<p style='text-align: right;'>Contact Us: Kehinde Clement, Phone No: 08121111830</p>", unsafe_allow_html=True)
@@ -47,7 +50,7 @@ if uploaded_file is not None:
     df['Oil Temperature S2'] = df[oilTemp] + np.random.uniform(-0.6, 0.8, df.shape[0])
     df['Oil Temperature Avg'] = np.mean(df[['Oil Temperature S2', oilTemp]].values, axis = 1)
     oilTemp = 'Oil Temperature Avg'
-    
+    pred = np.round(model.predict(df[['Ambient Temperature', 'Load (kVA)', 'Hydrogen (ppm)','Carbon Monoxide (ppm)', 'Oil Temperature Avg']].values)[-1],2)
     oilTempHID = calculateHealthindex(df[oilTemp].values[-1], 62.779347, 92.364736+15, 0.15)
     oilTempSta = healthStatus(oilTempHID)
     loadKVAHID = calculateHealthindex(df['Load (kVA)'].values[-1], 141.195798, 300, 0.1)
@@ -56,7 +59,7 @@ if uploaded_file is not None:
     carbonCSta = healthStatus(carbonCHID)
     hydroCoHID = calculateHealthindex(df['Hydrogen (ppm)'].values[-1], 99.642377, 250, 0.15)
     hydrogenSt = healthStatus(hydroCoHID)
-
+    predStatus - healthStatus(pred)
     
     dateRange = st.radio('SELECT DATE RANGE',['LAST YEAR','LAST 6MONTH', 'LAST 3MONTH', 'LAST 1MONTH','LAST 1WEEK', 'LAST 1DAY'],horizontal = True)
     if dateRange == 'LAST YEAR':
@@ -481,11 +484,11 @@ if uploaded_file is not None:
             </tr>
             <tr>
                 <td>Transformer short Circuit Probability</td>
-                <td>0.3</td>
-                <td>Watch</td>
+                <td>{}</td>
+                <td>{}</td>
             </tr>
         </table>
-                    </div>""".format(oilTempHID, oilTempSta, loadKVAHID, loadKVASta, carbonCHID, carbonCSta, hydroCoHID, hydrogenSt), unsafe_allow_html=True)
+                    </div>""".format(oilTempHID, oilTempSta, loadKVAHID, loadKVASta, carbonCHID, carbonCSta, hydroCoHID, hydrogenSt, pred, predStatus), unsafe_allow_html=True)
 
     # Correlation Tool in col3
     with col3:
