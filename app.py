@@ -63,7 +63,7 @@ if uploaded_file is not None:
             ax.plot(months, ambient_temp, label='Ambient Temperature', color='lightpink', marker='o')
             ax.set_ylabel('Temperature (°C)')
             ax.legend()
-            ax.set_yticks(np.arange(0, max(oil_temp) + 10, 10))
+            ax.set_yticks(np.arange(0, max(oil_temp) + 30, 10))
             plt.xticks(rotation=45)
             st.pyplot(fig)
 
@@ -114,6 +114,7 @@ if uploaded_file is not None:
             ax.plot(months, ambient_temp, label='Ambient Temperature', color='lightpink', marker='o')
             ax.set_ylabel('Temperature (°C)')
             ax.legend()
+            ax.set_yticks(np.arange(0, max(oil_temp) + 30, 10))
             plt.xticks(rotation=45)
             st.pyplot(fig)
 
@@ -163,6 +164,7 @@ if uploaded_file is not None:
             ax.plot(months, oil_temp, label='Oil Temperature', color='purple', marker='o')
             ax.plot(months, ambient_temp, label='Ambient Temperature', color='lightpink', marker='o')
             ax.set_ylabel('Temperature (°C)')
+            ax.set_yticks(np.arange(0, max(oil_temp) + 30, 10))
             ax.legend()
             plt.xticks(rotation=45)
             st.pyplot(fig)
@@ -212,6 +214,7 @@ if uploaded_file is not None:
             ax.plot(weeks, oil_temp, label='Oil Temperature', color='purple', marker='o')
             ax.plot(weeks, ambient_temp, label='Ambient Temperature', color='lightpink', marker='o')
             ax.set_ylabel('Temperature (°C)')
+            ax.set_yticks(np.arange(0, max(oil_temp) + 30, 10))
             ax.legend()
             plt.xticks(rotation=45)
             st.pyplot(fig)
@@ -259,6 +262,7 @@ if uploaded_file is not None:
             ax.plot(days, oil_temp, label='Oil Temperature', color='purple', marker='o')
             ax.plot(days, ambient_temp, label='Ambient Temperature', color='lightpink', marker='o')
             ax.set_ylabel('Temperature (°C)')
+            ax.set_yticks(np.arange(0, max(oil_temp) + 30, 10))
             ax.legend()
             plt.xticks(rotation=45)
             st.pyplot(fig)
@@ -306,6 +310,7 @@ if uploaded_file is not None:
             ax.plot(hours, ambient_temp, label='Ambient Temperature', color='lightpink', marker='o')
             ax.set_ylabel('Temperature (°C)')
             ax.legend()
+            ax.set_yticks(np.arange(0, max(oil_temp) + 30, 10))
             plt.xticks(rotation=45)
             st.pyplot(fig)
         with col2:
