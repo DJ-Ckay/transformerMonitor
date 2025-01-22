@@ -33,7 +33,10 @@ def healthStatus(val):
     if val<=0.3:return '<span style="color: green;">Normal.</span>'
     elif val<=0.6:return '<span style="color: #F79421;">Watch.</span>'
     else:return '<bold><span style="color: red;">Danger.</span></bold>'
-# prompt: write a code that converts a range of min1 - max1 to min2-max2
+def healthStatusPred(val):
+    if val<=3:return '<span style="color: green;">Normal.</span>'
+    elif val<=6:return '<span style="color: #F79421;">Watch.</span>'
+    else:return '<bold><span style="color: red;">Danger.</span></bold>'
 
 def convert_range(value, min1, max1, min2, max2):
   """Converts a value from one range to another.
@@ -69,7 +72,7 @@ if uploaded_file is not None:
     oilTemp = 'Oil Temperature Avg'
     X = df[['Ambient Temperature', 'Load (kVA)', 'Hydrogen (ppm)','Carbon Monoxide (ppm)', 'Oil Temperature Avg']].values
     X = scaler.transform(X)
-    pred = np.round(model.predict(X)[-100:].mean()/100,2)
+    pred = np.round(model.predict(X).mean(),2)
     pred = round(convert_range(pred, 0, 0.90, 0, 0.70),2)
     oilTempHID = calculateHealthindex(df[oilTemp].values[-100:].mean(), 62.779347, 92.364736+15, 0.15)
     oilTempSta = healthStatus(oilTempHID)
@@ -79,7 +82,7 @@ if uploaded_file is not None:
     carbonCSta = healthStatus(carbonCHID)
     hydroCoHID = calculateHealthindex(df['Hydrogen (ppm)'].values[-100:].mean(), 99.642377, 250, 0.15)
     hydrogenSt = healthStatus(hydroCoHID)
-    predStatus = healthStatus(pred)
+    predStatus = healthStatusPred(pred)
     
     dateRange = st.radio('SELECT DATE RANGE',['LAST YEAR','LAST 6MONTH', 'LAST 3MONTH', 'LAST 1MONTH','LAST 1WEEK', 'LAST 1DAY'],horizontal = True)
     if dateRange == 'LAST YEAR':
@@ -488,7 +491,7 @@ if uploaded_file is not None:
                 <td>{}</td>
             </tr>
             <tr>
-                <td>Transformer Load</td>
+                <td>Transformer Load %</td>
                 <td>{}</td>
                 <td>{}</td>
             </tr>
@@ -503,7 +506,7 @@ if uploaded_file is not None:
                 <td>{}</td>
             </tr>
             <tr>
-                <td>Transformer short Circuit Probability</td>
+                <td>Transformer short Circuit Probability %</td>
                 <td>{}</td>
                 <td>{}</td>
             </tr>
